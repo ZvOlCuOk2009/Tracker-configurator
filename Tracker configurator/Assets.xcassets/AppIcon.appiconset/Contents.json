@@ -1,63 +1,105 @@
 {
   "images" : [
     {
+      "size" : "20x20",
       "idiom" : "iphone",
-      "size" : "29x29",
+      "filename" : "Копия Снимок экрана 2016-12-20 в 11.29.34.png",
       "scale" : "2x"
     },
     {
+      "size" : "20x20",
       "idiom" : "iphone",
-      "size" : "29x29",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34.png",
       "scale" : "3x"
     },
     {
+      "size" : "29x29",
       "idiom" : "iphone",
-      "size" : "40x40",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 2.png",
       "scale" : "2x"
     },
     {
+      "size" : "29x29",
       "idiom" : "iphone",
-      "size" : "40x40",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 3.png",
       "scale" : "3x"
     },
     {
+      "size" : "40x40",
       "idiom" : "iphone",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 4.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 5.png",
+      "scale" : "3x"
+    },
+    {
       "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 5-1.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 7.png",
       "scale" : "3x"
     },
     {
+      "size" : "20x20",
       "idiom" : "ipad",
-      "size" : "29x29",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 8.png",
       "scale" : "1x"
     },
     {
+      "size" : "20x20",
       "idiom" : "ipad",
-      "size" : "29x29",
+      "filename" : "Копия Снимок экрана 2016-12-20 в 11.29.34-1.png",
       "scale" : "2x"
     },
     {
+      "size" : "29x29",
       "idiom" : "ipad",
-      "size" : "40x40",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 9.png",
       "scale" : "1x"
     },
     {
+      "size" : "29x29",
       "idiom" : "ipad",
-      "size" : "40x40",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 2-1.png",
       "scale" : "2x"
     },
     {
+      "size" : "40x40",
       "idiom" : "ipad",
-      "size" : "76x76",
+      "filename" : "Копия Снимок экрана 2016-12-20 в 11.29.34-2.png",
       "scale" : "1x"
     },
     {
+      "size" : "40x40",
       "idiom" : "ipad",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 4-1.png",
+      "scale" : "2x"
+    },
+    {
       "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 10.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 11.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "Снимок экрана 2016-12-20 в 11.29.34 — копия 12.png",
       "scale" : "2x"
     }
   ],

@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		FD4418491E092A9000FDDFB1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4418481E092A9000FDDFB1 /* main.m */; };
 		FD44184C1E092A9000FDDFB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD44184B1E092A9000FDDFB1 /* AppDelegate.m */; };
-		FD44184F1E092A9000FDDFB1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD44184E1E092A9000FDDFB1 /* ViewController.m */; };
 		FD4418521E092A9100FDDFB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD4418501E092A9100FDDFB1 /* Main.storyboard */; };
 		FD4418541E092A9100FDDFB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD4418531E092A9100FDDFB1 /* Assets.xcassets */; };
 		FD4418571E092A9100FDDFB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD4418551E092A9100FDDFB1 /* LaunchScreen.storyboard */; };
 		FD4418621E092A9100FDDFB1 /* Tracker_configuratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4418611E092A9100FDDFB1 /* Tracker_configuratorTests.m */; };
 		FD44186D1E092A9100FDDFB1 /* Tracker_configuratorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD44186C1E092A9100FDDFB1 /* Tracker_configuratorUITests.m */; };
+		FD44187C1E093DAB00FDDFB1 /* TSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD44187B1E093DAB00FDDFB1 /* TSMainViewController.m */; };
+		FDA7846B1E09A5F6007D623A /* TSGeoFenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA7846A1E09A5F6007D623A /* TSGeoFenceViewController.m */; };
+		FDA7846E1E09A65E007D623A /* TSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA7846D1E09A65E007D623A /* TSSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +41,6 @@
 		FD4418481E092A9000FDDFB1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FD44184A1E092A9000FDDFB1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD44184B1E092A9000FDDFB1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FD44184D1E092A9000FDDFB1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FD44184E1E092A9000FDDFB1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		FD4418511E092A9100FDDFB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FD4418531E092A9100FDDFB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD4418561E092A9100FDDFB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +51,13 @@
 		FD4418681E092A9100FDDFB1 /* Tracker configuratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tracker configuratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD44186C1E092A9100FDDFB1 /* Tracker_configuratorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tracker_configuratorUITests.m; sourceTree = "<group>"; };
 		FD44186E1E092A9100FDDFB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD44187A1E093DAB00FDDFB1 /* TSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMainViewController.h; sourceTree = "<group>"; };
+		FD44187B1E093DAB00FDDFB1 /* TSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMainViewController.m; sourceTree = "<group>"; };
+		FDA784681E09615F007D623A /* TSTrackerConfigurationPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSTrackerConfigurationPrefixHeader.pch; sourceTree = "<group>"; };
+		FDA784691E09A5F6007D623A /* TSGeoFenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGeoFenceViewController.h; sourceTree = "<group>"; };
+		FDA7846A1E09A5F6007D623A /* TSGeoFenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGeoFenceViewController.m; sourceTree = "<group>"; };
+		FDA7846C1E09A65E007D623A /* TSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSSettingsViewController.h; sourceTree = "<group>"; };
+		FDA7846D1E09A65E007D623A /* TSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,13 +110,18 @@
 			children = (
 				FD44184A1E092A9000FDDFB1 /* AppDelegate.h */,
 				FD44184B1E092A9000FDDFB1 /* AppDelegate.m */,
-				FD44184D1E092A9000FDDFB1 /* ViewController.h */,
-				FD44184E1E092A9000FDDFB1 /* ViewController.m */,
+				FD44187A1E093DAB00FDDFB1 /* TSMainViewController.h */,
+				FD44187B1E093DAB00FDDFB1 /* TSMainViewController.m */,
+				FDA784691E09A5F6007D623A /* TSGeoFenceViewController.h */,
+				FDA7846A1E09A5F6007D623A /* TSGeoFenceViewController.m */,
+				FDA7846C1E09A65E007D623A /* TSSettingsViewController.h */,
+				FDA7846D1E09A65E007D623A /* TSSettingsViewController.m */,
 				FD4418501E092A9100FDDFB1 /* Main.storyboard */,
 				FD4418531E092A9100FDDFB1 /* Assets.xcassets */,
 				FD4418551E092A9100FDDFB1 /* LaunchScreen.storyboard */,
 				FD4418581E092A9100FDDFB1 /* Info.plist */,
 				FD4418471E092A9000FDDFB1 /* Supporting Files */,
+				FDA784681E09615F007D623A /* TSTrackerConfigurationPrefixHeader.pch */,
 			);
 			path = "Tracker configurator";
 			sourceTree = "<group>";
@@ -207,6 +219,7 @@
 				TargetAttributes = {
 					FD4418431E092A8F00FDDFB1 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 2ZQMG97HLH;
 						ProvisioningStyle = Automatic;
 					};
 					FD44185C1E092A9100FDDFB1 = {
@@ -273,8 +286,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD44184F1E092A9000FDDFB1 /* ViewController.m in Sources */,
 				FD44184C1E092A9000FDDFB1 /* AppDelegate.m in Sources */,
+				FDA7846E1E09A65E007D623A /* TSSettingsViewController.m in Sources */,
+				FDA7846B1E09A5F6007D623A /* TSGeoFenceViewController.m in Sources */,
+				FD44187C1E093DAB00FDDFB1 /* TSMainViewController.m in Sources */,
 				FD4418491E092A9000FDDFB1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,7 +439,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2ZQMG97HLH;
 				INFOPLIST_FILE = "Tracker configurator/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsvigun-Sasha.Tracker-configurator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -435,7 +452,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2ZQMG97HLH;
 				INFOPLIST_FILE = "Tracker configurator/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsvigun-Sasha.Tracker-configurator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -507,6 +526,7 @@
 				FD4418731E092A9100FDDFB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FD4418741E092A9100FDDFB1 /* Build configuration list for PBXNativeTarget "Tracker configuratorTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +535,7 @@
 				FD4418761E092A9100FDDFB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FD4418771E092A9100FDDFB1 /* Build configuration list for PBXNativeTarget "Tracker configuratorUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +544,7 @@
 				FD4418791E092A9100FDDFB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
