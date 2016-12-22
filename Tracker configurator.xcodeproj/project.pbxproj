@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD1748061E0AD7D800515445 /* TSPostingMessagesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1748051E0AD7D800515445 /* TSPostingMessagesManager.m */; };
+		FD17480D1E0AE01A00515445 /* NSString+TSString.m in Sources */ = {isa = PBXBuildFile; fileRef = FD17480C1E0AE01A00515445 /* NSString+TSString.m */; };
+		FD1748101E0B4BC200515445 /* TSInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD17480F1E0B4BC200515445 /* TSInfoViewController.m */; };
 		FD4418491E092A9000FDDFB1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4418481E092A9000FDDFB1 /* main.m */; };
 		FD44184C1E092A9000FDDFB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD44184B1E092A9000FDDFB1 /* AppDelegate.m */; };
 		FD4418521E092A9100FDDFB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD4418501E092A9100FDDFB1 /* Main.storyboard */; };
@@ -37,6 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD1748041E0AD7D800515445 /* TSPostingMessagesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPostingMessagesManager.h; sourceTree = "<group>"; };
+		FD1748051E0AD7D800515445 /* TSPostingMessagesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPostingMessagesManager.m; sourceTree = "<group>"; };
+		FD17480B1E0AE01A00515445 /* NSString+TSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TSString.h"; sourceTree = "<group>"; };
+		FD17480C1E0AE01A00515445 /* NSString+TSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TSString.m"; sourceTree = "<group>"; };
+		FD17480E1E0B4BC100515445 /* TSInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSInfoViewController.h; sourceTree = "<group>"; };
+		FD17480F1E0B4BC200515445 /* TSInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSInfoViewController.m; sourceTree = "<group>"; };
 		FD4418441E092A9000FDDFB1 /* Tracker configurator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tracker configurator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD4418481E092A9000FDDFB1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FD44184A1E092A9000FDDFB1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -85,6 +94,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD1748031E0AD78800515445 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				FD1748041E0AD7D800515445 /* TSPostingMessagesManager.h */,
+				FD1748051E0AD7D800515445 /* TSPostingMessagesManager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		FD1748071E0AD81100515445 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FD44184A1E092A9000FDDFB1 /* AppDelegate.h */,
+				FD44184B1E092A9000FDDFB1 /* AppDelegate.m */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		FD1748081E0AD83200515445 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FD44187A1E093DAB00FDDFB1 /* TSMainViewController.h */,
+				FD44187B1E093DAB00FDDFB1 /* TSMainViewController.m */,
+				FDA784691E09A5F6007D623A /* TSGeoFenceViewController.h */,
+				FDA7846A1E09A5F6007D623A /* TSGeoFenceViewController.m */,
+				FDA7846C1E09A65E007D623A /* TSSettingsViewController.h */,
+				FDA7846D1E09A65E007D623A /* TSSettingsViewController.m */,
+				FD17480E1E0B4BC100515445 /* TSInfoViewController.h */,
+				FD17480F1E0B4BC200515445 /* TSInfoViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FD1748091E0AD84600515445 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				FD4418501E092A9100FDDFB1 /* Main.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		FD17480A1E0ADFA000515445 /* Сategory */ = {
+			isa = PBXGroup;
+			children = (
+				FD17480B1E0AE01A00515445 /* NSString+TSString.h */,
+				FD17480C1E0AE01A00515445 /* NSString+TSString.m */,
+			);
+			name = "Сategory";
+			sourceTree = "<group>";
+		};
 		FD44183B1E092A8F00FDDFB1 = {
 			isa = PBXGroup;
 			children = (
@@ -108,15 +167,11 @@
 		FD4418461E092A9000FDDFB1 /* Tracker configurator */ = {
 			isa = PBXGroup;
 			children = (
-				FD44184A1E092A9000FDDFB1 /* AppDelegate.h */,
-				FD44184B1E092A9000FDDFB1 /* AppDelegate.m */,
-				FD44187A1E093DAB00FDDFB1 /* TSMainViewController.h */,
-				FD44187B1E093DAB00FDDFB1 /* TSMainViewController.m */,
-				FDA784691E09A5F6007D623A /* TSGeoFenceViewController.h */,
-				FDA7846A1E09A5F6007D623A /* TSGeoFenceViewController.m */,
-				FDA7846C1E09A65E007D623A /* TSSettingsViewController.h */,
-				FDA7846D1E09A65E007D623A /* TSSettingsViewController.m */,
-				FD4418501E092A9100FDDFB1 /* Main.storyboard */,
+				FD1748071E0AD81100515445 /* App */,
+				FD17480A1E0ADFA000515445 /* Сategory */,
+				FD1748031E0AD78800515445 /* Manager */,
+				FD1748081E0AD83200515445 /* Controllers */,
+				FD1748091E0AD84600515445 /* Storyboard */,
 				FD4418531E092A9100FDDFB1 /* Assets.xcassets */,
 				FD4418551E092A9100FDDFB1 /* LaunchScreen.storyboard */,
 				FD4418581E092A9100FDDFB1 /* Info.plist */,
@@ -289,8 +344,11 @@
 				FD44184C1E092A9000FDDFB1 /* AppDelegate.m in Sources */,
 				FDA7846E1E09A65E007D623A /* TSSettingsViewController.m in Sources */,
 				FDA7846B1E09A5F6007D623A /* TSGeoFenceViewController.m in Sources */,
+				FD1748101E0B4BC200515445 /* TSInfoViewController.m in Sources */,
+				FD1748061E0AD7D800515445 /* TSPostingMessagesManager.m in Sources */,
 				FD44187C1E093DAB00FDDFB1 /* TSMainViewController.m in Sources */,
 				FD4418491E092A9000FDDFB1 /* main.m in Sources */,
+				FD17480D1E0AE01A00515445 /* NSString+TSString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

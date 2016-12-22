@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TSMainViewController.h"
 
-@interface TSGeoFenceViewController : UIViewController
+@interface TSGeoFenceViewController : TSMainViewController
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "TSSettingsViewController.h"
+#import "TSInfoViewController.h"
 #import "TSTrackerConfigurationPrefixHeader.pch"
 
 @interface TSSettingsViewController ()
@@ -96,7 +97,9 @@
 
 - (void)actionInfoButton
 {
-    NSLog(@"info");
+    TSInfoViewController *settingsViewController =
+    [self.storyboard instantiateViewControllerWithIdentifier:@"TSInfoViewController"];
+    [self.navigationController pushViewController:settingsViewController animated:YES];
 }
 
 
