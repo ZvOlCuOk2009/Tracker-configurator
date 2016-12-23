@@ -27,5 +27,12 @@
 + (NSString *)parametersComand;
 + (NSString *)configurationComand;
 + (NSString *)setGpsCoordinateComand:(NSDictionary *)dictionaryValue determinant:(NSInteger)determinant;
++ (NSString *)phoneComand:(NSString *)phone;
++ (NSString *)sosComand:(BOOL)mode;
++ (NSString *)pinComand:(NSString *)newPin;
++ (NSString *)resSetComand;
++ (NSString *)restoryFactorComand;
+
++ (NSString *)infoText;
 
 @end

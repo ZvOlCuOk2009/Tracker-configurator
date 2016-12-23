@@ -7,8 +7,14 @@
 //
 
 #import "TSInfoViewController.h"
+#import "NSString+TSString.h"
+#import "TSTrackerConfigurationPrefixHeader.pch"
 
 @interface TSInfoViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+
+@property(strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -16,24 +22,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.infoLabel.text = [NSString infoText];
+    [self.infoLabel sizeToFit];
+
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    if (IS_IPHONE_4) {
+        self.scrollView.frame = CGRectMake(0, 0, 320, 480);
+        self.scrollView.contentSize = CGSizeMake(320, 3500);
+    } else if (IS_IPHONE_5) {
+        self.scrollView.frame = CGRectMake(0, 0, 320, 568);
+        self.scrollView.contentSize = CGSizeMake(320, 3500);
+    } else if (IS_IPHONE_6) {
+        self.scrollView.frame = CGRectMake(0, 0, 375, 667);
+        self.scrollView.contentSize = CGSizeMake(375, 3500);
+    } else if (IS_IPHONE_6_PLUS) {
+        self.scrollView.frame = CGRectMake(0, 0, 414, 736);
+        self.scrollView.contentSize = CGSizeMake(414, 3500);
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
-/*
- UITextView *myUITextView = [[UITextView alloc] initWithFrame:CGRectMake(20,188,280,260)];
- myUITextView.text = infoText;
- myUITextView.textColor = [UIColor lightGrayColor];
- myUITextView.font = [UIFont systemFontOfSize:14];
- [myUITextView setBackgroundColor:[UIColor clearColor]];
- myUITextView.editable = NO;
- myUITextView.scrollEnabled = YES;
- [Scrollerview addSubview:myUITextView];
- [myUITextView release];
-*/
 
 @end

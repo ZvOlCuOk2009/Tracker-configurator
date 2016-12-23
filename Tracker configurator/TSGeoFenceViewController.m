@@ -31,6 +31,13 @@
 @property (strong, nonatomic) NSArray *dataSourceNS;
 @property (strong, nonatomic) NSArray *dataSourceEW;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lattitudeOneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *loungtitudeOneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lauttitudeTwoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *loungtitudeTwoLabel;
+
+
 @property (assign, nonatomic) NSInteger determinant;
 
 @end
@@ -42,6 +49,13 @@
     
     [self configureController];
 
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setLaunguage];
 }
 
 
@@ -121,6 +135,12 @@
         
     }
         
+}
+
+
+- (IBAction)actionReset:(id)sender
+{
+    
 }
 
 
@@ -371,6 +391,53 @@
     }
     
     return YES;
+}
+
+
+#pragma mark - set launguage
+
+- (void)setLaunguage
+{
+    NSString *language = [[NSUserDefaults standardUserDefaults] objectForKey:@"language"];
+    
+    if ([language isEqualToString:@"English"]) {
+        
+        [self setEngleshLaunguage];
+        
+    } else if ([language isEqualToString:@"German"]) {
+        
+        [self setGermanLaunguage];
+    }
+}
+
+
+- (void)setEngleshLaunguage
+{
+    [self.titleLabel setText:@"Programming GPS zones"];
+    [self.lattitudeOneLabel setText:@"Lattitude1"];
+    [self.loungtitudeOneLabel setText:@"Longtittude1"];
+    [self.lauttitudeTwoLabel setText:@"Lattitude2"];
+    [self.loungtitudeTwoLabel setText:@"Longtittude2"];
+    
+    self.lattitudeOneTextField.placeholder = @"Upper border";
+    self.longtittudeOneTextField.placeholder = @"Left border";
+    self.lattitudeTwoTextField.placeholder = @"Bottom border";
+    self.longtittudeTwoTextField.placeholder = @"Right border";
+}
+
+
+- (void)setGermanLaunguage
+{
+    [self.titleLabel setText:@"Programmierung der Sicherheitszonen GPS"];
+    [self.lattitudeOneLabel setText:@"Breitengrad1"];
+    [self.loungtitudeOneLabel setText:@"Längengrad1"];
+    [self.lauttitudeTwoLabel setText:@"Breitengrad2"];
+    [self.loungtitudeTwoLabel setText:@"Längengrad2"];
+    
+    self.lattitudeOneTextField.placeholder = @"obere Grenze";
+    self.longtittudeOneTextField.placeholder = @"linke Grenze";
+    self.lattitudeTwoTextField.placeholder = @"untere Grenze";
+    self.longtittudeTwoTextField.placeholder = @"rechte Grenze";
 }
 
 

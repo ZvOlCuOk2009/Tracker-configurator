@@ -13,11 +13,14 @@
 
 @interface TSMainViewController : UIViewController <MFMessageComposeViewControllerDelegate, CNContactPickerDelegate>
 
+@property (strong, nonatomic) CNContactPickerViewController *contactPicker;
+
+@property (strong, nonatomic) NSUserDefaults *userDefaults;
+@property (strong, nonatomic) NSArray *recipient;
+
 @property (strong, nonatomic) UIImage *point;
 @property (strong, nonatomic) UIImage *background;
 
-@property (strong, nonatomic) NSArray *recipient;
-
-@property (strong, nonatomic) CNContactPickerViewController *contactPicker;
+@property (assign, nonatomic) NSInteger curentTag;
 
 @end

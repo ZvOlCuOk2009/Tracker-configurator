@@ -34,9 +34,28 @@
 @property (strong, nonatomic) NSMutableArray *dataSourceTimeZone;
 @property (strong, nonatomic) NSMutableArray *dataSourceTrackInterval;
 
-@property (strong, nonatomic) NSUserDefaults *userDefaults;
+@property (weak, nonatomic) IBOutlet UILabel *getLocationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *setAdminPhoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *setApnLabel;
+@property (weak, nonatomic) IBOutlet UILabel *setServerAndPortLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeZoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *startTransDataLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addSettingsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sleepModeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *movieLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *shockLabel;
+@property (weak, nonatomic) IBOutlet UILabel *trackingIntervalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *modeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *trackerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *monitorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *movementAlarmLabel;
+@property (weak, nonatomic) IBOutlet UILabel *overspeedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *chackSettingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *parametersLabel;
+@property (weak, nonatomic) IBOutlet UILabel *configurationLabel;
 
-@property (assign, nonatomic) NSInteger curentTag;
 @property (assign, nonatomic) BOOL mode;
 
 @end
@@ -59,8 +78,10 @@
         self.scrollView.contentSize = CGSizeMake(320, 1320);
     } else if (IS_IPHONE_5) {
         self.scrollView.frame = CGRectMake(0, 0, 320, 568);
+        self.scrollView.contentSize = CGSizeMake(320, 1320);
     } else if (IS_IPHONE_6) {
         self.scrollView.frame = CGRectMake(0, 0, 375, 667);
+        self.scrollView.contentSize = CGSizeMake(375, 1320);
     } else if (IS_IPHONE_6_PLUS) {
         self.scrollView.frame = CGRectMake(0, 0, 414, 736);
         self.scrollView.contentSize = CGSizeMake(414, 1320);
@@ -72,15 +93,21 @@
 {
     [super viewWillAppear:animated];
     
-//    NSString *nameDevice = [self.userDefaults objectForKey:@"nameDevice"];
-//    [self.deviceButton setTitle:nameDevice forState:UIControlStateNormal];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:)
                                                  name:UIKeyboardDidShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification object:nil];
     
+    UITextField *internetTextField = [self.textFieldOutletCollection objectAtIndex:1];
+    UITextField *serverTextField = [self.textFieldOutletCollection objectAtIndex:2];
+    UITextField *portTextField = [self.textFieldOutletCollection objectAtIndex:3];
+    
+    internetTextField.placeholder = [self.userDefaults objectForKey:@"internet"];
+    serverTextField.placeholder = [self.userDefaults objectForKey:@"server"];
+    portTextField.placeholder = [self.userDefaults objectForKey:@"port"];
+    
+    [self setLaunguage];
 }
 
 
@@ -106,10 +133,21 @@
     self.dataSourceTrackInterval = [NSMutableArray array];
     
     
-    for (int i = - 12; i < 12; i++) {
-        NSString *zoneString = [NSString stringWithFormat:@"%d", i];
+    for (int i = - 12; i < 13; i++) {
+        
+        NSString *zoneString = nil;
+        
+        if (i > 0) {
+            zoneString = [NSString stringWithFormat:@"+%d", i];
+        } else {
+            zoneString = [NSString stringWithFormat:@"%d", i];
+        }
+        
         [self.dataSourceTimeZone addObject:zoneString];
     }
+    
+    UIPickerView *timeZonePickerView = [self.pickerViewOutletCollection firstObject];
+    [timeZonePickerView selectRow:12 inComponent:0 animated:NO];
     
     for (int i = 10; i < 180; i++) {
         NSString *intervalString = [NSString stringWithFormat:@"%d", i];
@@ -122,12 +160,21 @@
     if (counter == 0) {
         
         NSString *defaultPin = @"123456";
-        NSString *nameDevice = @"11912";
+        NSString *defaultApn = @"internet";
+        NSString *defaultServer = @"94.229.67.27";
+        NSString *defaultPort = @"11912";
+        
         [self.userDefaults setObject:defaultPin forKey:@"pin"];
-        [self.userDefaults setObject:nameDevice forKey:@"nameDevice"];
+        [self.userDefaults setObject:defaultApn forKey:@"internet"];
+        [self.userDefaults setObject:defaultServer forKey:@"server"];
+        [self.userDefaults setObject:defaultPort forKey:@"port"];
+        
         [self.userDefaults setInteger:1 forKey:@"counter"];
         [self.userDefaults synchronize];
     }
+    
+    UIButton *trackerButton = [self.buttonOutletCollection firstObject];
+    [trackerButton setBackgroundImage:self.point forState:UIControlStateNormal];
     
 }
 
@@ -139,7 +186,6 @@
 {
     self.curentTag = sender.tag;
     [self callContactPickerViewController];
-    NSLog(@"curentTag %ld", (long)self.curentTag);
 }
 
 
@@ -150,7 +196,7 @@
     UIButton *monitorButton = [self.buttonOutletCollection lastObject];
     [monitorButton setBackgroundImage:self.background forState:UIControlStateNormal];
     
-    self.mode = YES;
+    self.mode = NO;
 }
 
 
@@ -161,7 +207,7 @@
     UIButton *trackerButton = [self.buttonOutletCollection firstObject];
     [trackerButton setBackgroundImage:self.background forState:UIControlStateNormal];
     
-    self.mode = NO;
+    self.mode = YES;
 }
 
 
@@ -399,16 +445,16 @@
     
     if ([textField isEqual:textFieldAdminPhone]) {
 
-        NSCharacterSet* validationSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-        NSArray* components = [string componentsSeparatedByCharactersInSet:validationSet];
+        NSCharacterSet *validationSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+        NSArray *components = [string componentsSeparatedByCharactersInSet:validationSet];
         
         if ([components count] > 1) {
             return NO;
         }
         
-        NSString* newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
         
-        NSArray* validComponents = [newString componentsSeparatedByCharactersInSet:validationSet];
+        NSArray *validComponents = [newString componentsSeparatedByCharactersInSet:validationSet];
         
         newString = [validComponents componentsJoinedByString:@""];
         
@@ -474,8 +520,8 @@
         
         NSMutableString *formatingString = [NSMutableString stringWithString:newString];
         
-        NSCharacterSet* validationSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-        NSArray* components = [string componentsSeparatedByCharactersInSet:validationSet];
+        NSCharacterSet *validationSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+        NSArray *components = [string componentsSeparatedByCharactersInSet:validationSet];
         
         if ([components count] > 1) {
             return NO;
@@ -500,6 +546,24 @@
         NSLog(@"newString %@", formatingString);
     }
     
+    static const int ovSpeedAlarmMaxLength = 3;
+    
+    if ([textField isEqual:self.textFieldOvSpeedAlarm]) {
+        
+        NSCharacterSet *validationSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+        NSArray *components = [string componentsSeparatedByCharactersInSet:validationSet];
+        
+        if ([components count] > 1) {
+            return NO;
+        }
+        
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        
+        if ([newString length] > ovSpeedAlarmMaxLength) {
+            return NO;
+        }
+    }
+    
     return YES;
 }
 
@@ -508,6 +572,75 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+
+#pragma mark - set launguage
+
+- (void)setLaunguage
+{
+    NSString *language = [[NSUserDefaults standardUserDefaults] objectForKey:@"language"];
+    
+    if ([language isEqualToString:@"English"]) {
+        
+        [self setEngleshLaunguage];
+        
+    } else if ([language isEqualToString:@"German"]) {
+        
+        [self setGermanLaunguage];
+    }
+}
+
+
+- (void)setEngleshLaunguage
+{
+    [self.getLocationLabel setText:@"Get location"];
+    [self.setAdminPhoneLabel setText:@"Set admin phone"];
+    [self.setApnLabel setText:@"Set APN"];
+    [self.setServerAndPortLabel setText:@"Server&port"];
+    [self.timeZoneLabel setText:@"Timezone"];
+    [self.startTransDataLabel setText:@"Start transmission data"];
+    [self.addSettingsLabel setText:@"Additional settings"];
+    [self.sleepModeLabel setText:@"Sleep mode"];
+    [self.movieLabel setText:@"Move"];
+    [self.timeLabel setText:@"Time"];
+    [self.shockLabel setText:@"Shock"];
+    [self.trackingIntervalLabel setText:@"Tracking interval"];
+    [self.modeLabel setText:@"Mode"];
+    [self.trackerLabel setText:@"Tracker"];
+    [self.monitorLabel setText:@"Monitor"];
+    [self.movementAlarmLabel setText:@"Movement alarm"];
+    [self.overspeedLabel setText:@"Overspeed alarm"];
+    [self.chackSettingLabel setText:@"Check settings"];
+    [self.statusLabel setText:@"Status"];
+    [self.parametersLabel setText:@"Parameters"];
+    [self.configurationLabel setText:@"Configuration"];
+}
+
+
+- (void)setGermanLaunguage
+{
+    [self.getLocationLabel setText:@"Erhalten Sie Position"];
+    [self.setAdminPhoneLabel setText:@"Admin-Telefon einstellen"];
+    [self.setApnLabel setText:@"Setze APN"];
+    [self.setServerAndPortLabel setText:@"Server&port"];
+    [self.timeZoneLabel setText:@"Zeitzone"];
+    [self.startTransDataLabel setText:@"Starten Übertragungsdaten"];
+    [self.addSettingsLabel setText:@"Zusätzliche Einstellungen"];
+    [self.sleepModeLabel setText:@"Schlafmodus"];
+    [self.movieLabel setText:@"Bewegung"];
+    [self.timeLabel setText:@"Zeit"];
+    [self.shockLabel setText:@"Schlag"];
+    [self.trackingIntervalLabel setText:@"Tracking-Intervall"];
+    [self.modeLabel setText:@"Modus"];
+    [self.trackerLabel setText:@"Tracker"];
+    [self.monitorLabel setText:@"Monitor"];
+    [self.movementAlarmLabel setText:@"Bewegungsalarm"];
+    [self.overspeedLabel setText:@"Überdrehzahl"];
+    [self.chackSettingLabel setText:@"Einstellungen überprüfen"];
+    [self.statusLabel setText:@"Status"];
+    [self.parametersLabel setText:@"Parameter"];
+    [self.configurationLabel setText:@"Konfiguration"];
 }
 
 
