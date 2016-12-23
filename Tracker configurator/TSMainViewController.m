@@ -10,8 +10,11 @@
 #import "TSGeoFenceViewController.h"
 #import "TSSettingsViewController.h"
 #import "TSPostingMessagesManager.h"
+#import "TSPermisionContacts.h"
 #import "NSString+TSString.h"
 #import "TSTrackerConfigurationPrefixHeader.pch"
+
+#import <AddressBookUI/AddressBookUI.h>
 
 @interface TSMainViewController () 
 
@@ -73,18 +76,33 @@
 {
     [super viewDidLayoutSubviews];
     
-    if (IS_IPHONE_4) {
-        self.scrollView.frame = CGRectMake(0, 0, 320, 480);
-        self.scrollView.contentSize = CGSizeMake(320, 1320);
-    } else if (IS_IPHONE_5) {
-        self.scrollView.frame = CGRectMake(0, 0, 320, 568);
-        self.scrollView.contentSize = CGSizeMake(320, 1320);
-    } else if (IS_IPHONE_6) {
-        self.scrollView.frame = CGRectMake(0, 0, 375, 667);
-        self.scrollView.contentSize = CGSizeMake(375, 1320);
-    } else if (IS_IPHONE_6_PLUS) {
-        self.scrollView.frame = CGRectMake(0, 0, 414, 736);
-        self.scrollView.contentSize = CGSizeMake(414, 1320);
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        if (IS_IPHONE_4) {
+            self.scrollView.frame = kScrollViewFrameIphone4;
+            self.scrollView.contentSize = kMainScrollViewcontentSizeIphone4;
+        } else if (IS_IPHONE_5) {
+            self.scrollView.frame = kScrollViewFrameIphone5;
+            self.scrollView.contentSize = kMainScrollViewcontentSizeIphone5;
+        } else if (IS_IPHONE_6) {
+            self.scrollView.frame = kScrollViewFrameIphone6;
+            self.scrollView.contentSize = kMainScrollViewcontentSizeIphone6;
+        } else if (IS_IPHONE_6_PLUS) {
+            self.scrollView.frame = kScrollViewFrameIphone6plus;
+            self.scrollView.contentSize = kMainScrollViewcontentSizeIphone6plus;
+        }
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+        if (IS_IPAD_2) {
+            self.scrollView.frame = kScrollViewFrameIpad2;
+            self.scrollView.contentSize = kMainScrollViewcontentSizeIpad2;
+        } else if (IS_IPAD_AIR) {
+            self.scrollView.frame = kScrollViewFrameIpadAir;
+            self.scrollView.contentSize = kScrollViewcontentSizeIpadAir;
+        } else if (IS_IPAD_PRO) {
+            self.scrollView.frame = kScrollViewFrameIpadPro;
+            self.scrollView.contentSize = kScrollViewcontentSizeIpadPro;
+        }
     }
 }
 
@@ -113,6 +131,10 @@
 
 - (void)configureController
 {
+    
+    self.titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    self.titleImageView.frame = kLogoFrame;
+    self.navigationItem.titleView = self.titleImageView;
     
     for (UITextField *textField in self.textFieldOutletCollection) {
         textField.layer.borderColor = [BLUE_COLOR CGColor];
@@ -176,6 +198,16 @@
     UIButton *trackerButton = [self.buttonOutletCollection firstObject];
     [trackerButton setBackgroundImage:self.point forState:UIControlStateNormal];
     
+    [self edgesForExtendedLayout];
+}
+
+
+- (void)edgesForExtendedLayout
+{
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 
@@ -184,8 +216,14 @@
 
 - (IBAction)sharedAction:(UIButton *)sender
 {
-    self.curentTag = sender.tag;
-    [self callContactPickerViewController];
+    NSInteger permission = [[TSPermisionContacts sharedPermission] userPermissionToAccessYourContacts];
+    
+    if (permission == 1)
+    {
+        self.curentTag = sender.tag;
+        [self callContactPickerViewController];
+    }
+    
 }
 
 
@@ -311,7 +349,7 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    return 40;
+    return kHeightRowComponent;
 }
 
 
@@ -527,23 +565,21 @@
             return NO;
         }
         
-        if ([formatingString length] > 2) {
-            [formatingString insertString:@"." atIndex:3];
-        }
-        
-        if ([formatingString length] > 6) {
-            [formatingString insertString:@"." atIndex:7];
-        }
-        
-        if ([formatingString length] > 10) {
-            [formatingString insertString:@"." atIndex:11];
-        }
-        
         if ([formatingString length] > serverNameMaxLength) {
             return NO;
         }
+
+        NSString *convertString = nil;
         
-        NSLog(@"newString %@", formatingString);
+        if ((range.location == 3) || (range.location == 7) || (range.location == 11)) {
+            
+            convertString = [NSString stringWithFormat:@"%@.", textField.text];
+            
+            textField.text = convertString;
+        }
+                
+        return YES;
+        
     }
     
     static const int ovSpeedAlarmMaxLength = 3;

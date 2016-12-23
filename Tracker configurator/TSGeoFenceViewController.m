@@ -9,6 +9,7 @@
 
 #import "TSGeoFenceViewController.h"
 #import "TSPostingMessagesManager.h"
+#import "TSPermisionContacts.h"
 #import "NSString+TSString.h"
 #import "TSTrackerConfigurationPrefixHeader.pch"
 
@@ -63,23 +64,44 @@
 {
     [super viewDidLayoutSubviews];
     
-    if (IS_IPHONE_4) {
-        self.scrollView.frame = CGRectMake(0, 0, 320, 480);
-        self.scrollView.contentSize = CGSizeMake(320, 568);
-    } else if (IS_IPHONE_5) {
-        self.scrollView.frame = CGRectMake(0, 0, 320, 568);
-        self.scrollView.contentSize = CGSizeMake(320, 568);
-    } else if (IS_IPHONE_6) {
-        self.scrollView.frame = CGRectMake(0, 0, 375, 667);
-    } else if (IS_IPHONE_6_PLUS) {
-        self.scrollView.frame = CGRectMake(0, 0, 414, 736);
-        self.scrollView.contentSize = CGSizeMake(414, 1320);
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        if (IS_IPHONE_4) {
+            self.scrollView.frame = kScrollViewFrameIphone4;
+            self.scrollView.contentSize = kGeoFenceScrollViewcontentSizeIphone4;
+        } else if (IS_IPHONE_5) {
+            self.scrollView.frame = kScrollViewFrameIphone5;
+            self.scrollView.contentSize = kGeoFenceScrollViewcontentSizeIphone5;
+        } else if (IS_IPHONE_6) {
+            self.scrollView.frame = kScrollViewFrameIphone6;
+            self.scrollView.contentSize = kGeoFenceScrollViewcontentSizeIphone6;
+        } else if (IS_IPHONE_6_PLUS) {
+            self.scrollView.frame = kScrollViewFrameIphone6plus;
+            self.scrollView.contentSize = kGeoFenceScrollViewcontentSizeIphone6plus;
+        }
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+        if (IS_IPAD_2) {
+            self.scrollView.frame = kScrollViewFrameIpad2;
+            self.scrollView.contentSize = kGeoFenceScrollViewcontentSizeIpad2;
+        } else if (IS_IPAD_AIR) {
+            self.scrollView.frame = kScrollViewFrameIpadAir;
+            self.scrollView.contentSize = kScrollViewcontentSizeIpadAir;
+        } else if (IS_IPAD_PRO) {
+            self.scrollView.frame = kScrollViewFrameIpadPro;
+            self.scrollView.contentSize = kScrollViewcontentSizeIpadPro;
+        }
     }
+    
 }
 
 
 - (void)configureController
 {
+    
+    self.titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    self.titleImageView.frame = kLogoFrame;
+    self.navigationItem.titleView = self.titleImageView;
     
     for (UITextField *textField in self.textFieldOutletCollection) {
         textField.layer.borderColor = [BLUE_COLOR CGColor];
@@ -93,6 +115,9 @@
     
     self.dataSourceNS = @[@"N", @"S"];
     self.dataSourceEW = @[@"E", @"W"];
+    
+    [self edgesForExtendedLayout];
+    
 }
 
 
@@ -101,53 +126,60 @@
 
 - (IBAction)actionButtonSet:(id)sender
 {
-   
-    NSUInteger characterCountLattitudeOne = [self.lattitudeOneTextField.text length];
-    NSUInteger characterCountLongtittudeeOne = [self.longtittudeOneTextField.text length];
-    NSUInteger characterCountLattitudeTwo = [self.lattitudeTwoTextField.text length];
-    NSUInteger characterCountLongtittudeeTWo = [self.longtittudeTwoTextField.text length];
     
-    
-    if (characterCountLattitudeOne < 9) {
+    if ([self accessVerification] == 1)
+    {
+        NSUInteger characterCountLattitudeOne = [self.lattitudeOneTextField.text length];
+        NSUInteger characterCountLongtittudeeOne = [self.longtittudeOneTextField.text length];
+        NSUInteger characterCountLattitudeTwo = [self.lattitudeTwoTextField.text length];
+        NSUInteger characterCountLongtittudeeTWo = [self.longtittudeTwoTextField.text length];
         
-        UIAlertController *alertController = [self sharedAlertController:@"Not enough characters for the latitude. Must be 8 digitals"];
-        [self presentViewController:alertController animated:YES completion:nil];
         
-    } else if (characterCountLongtittudeeOne < 10) {
-        
-        UIAlertController *alertController = [self sharedAlertController:@"Not enough characters for longitude. Must be 9 digitals"];
-        [self presentViewController:alertController animated:YES completion:nil];
-        
-    } else if (characterCountLattitudeTwo < 9) {
-        
-        UIAlertController *alertController = [self sharedAlertController:@"Not enough characters for the latitude. Must be 8 digitals"];
-        [self presentViewController:alertController animated:YES completion:nil];
-        
-    } else if (characterCountLongtittudeeTWo < 10) {
-        
-        UIAlertController *alertController = [self sharedAlertController:@"Not enough characters for longitude. Must be 9 digitals"];
-        [self presentViewController:alertController animated:YES completion:nil];
-        
-    } else {
-        
-        [self callContactPickerViewController];
-        self.determinant = 1;
-        
+        if (characterCountLattitudeOne < 9) {
+            
+            UIAlertController *alertController = [self sharedAlertController:@"Not enough characters for the latitude. Must be 8 digitals"];
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+        } else if (characterCountLongtittudeeOne < 10) {
+            
+            UIAlertController *alertController = [self sharedAlertController:@"Not enough characters for longitude. Must be 9 digitals"];
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+        } else if (characterCountLattitudeTwo < 9) {
+            
+            UIAlertController *alertController = [self sharedAlertController:@"Not enough characters for the latitude. Must be 8 digitals"];
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+        } else if (characterCountLongtittudeeTWo < 10) {
+            
+            UIAlertController *alertController = [self sharedAlertController:@"Not enough characters for longitude. Must be 9 digitals"];
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+        } else {
+            
+            [self callContactPickerViewController];
+            self.determinant = 1;
+            
+        }
     }
-        
-}
-
-
-- (IBAction)actionReset:(id)sender
-{
-    
 }
 
 
 - (IBAction)actionButtonReset:(id)sender
 {
-    [self callContactPickerViewController];
-    self.determinant = 2;
+    if ([self accessVerification] == 1)
+    {
+        [self callContactPickerViewController];
+        self.determinant = 2;
+    }
+}
+
+
+- (NSInteger)accessVerification
+{
+    NSInteger permission = [[TSPermisionContacts sharedPermission] userPermissionToAccessYourContacts];
+    
+    return permission;
 }
 
 
@@ -226,7 +258,7 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    return 40;
+    return kHeightRowComponent;
 }
 
 

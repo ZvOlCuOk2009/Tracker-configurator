@@ -9,8 +9,11 @@
 #import "TSSettingsViewController.h"
 #import "TSInfoViewController.h"
 #import "TSPostingMessagesManager.h"
+#import "TSPermisionContacts.h"
 #import "NSString+TSString.h"
 #import "TSTrackerConfigurationPrefixHeader.pch"
+
+#import <AddressBookUI/AddressBookUI.h>
 
 @interface TSSettingsViewController ()
 
@@ -72,22 +75,43 @@
 {
     [super viewDidLayoutSubviews];
     
-    if (IS_IPHONE_4) {
-        self.scrollView.frame = CGRectMake(0, 0, 320, 480);
-        self.scrollView.contentSize = CGSizeMake(320, 568);
-    } else if (IS_IPHONE_5) {
-        self.scrollView.frame = CGRectMake(0, 0, 320, 568);
-        self.scrollView.contentSize = CGSizeMake(320, 568);
-    } else if (IS_IPHONE_6) {
-        self.scrollView.frame = CGRectMake(0, 0, 375, 667);
-    } else if (IS_IPHONE_6_PLUS) {
-        self.scrollView.frame = CGRectMake(0, 0, 414, 736);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        if (IS_IPHONE_4) {
+            self.scrollView.frame = kScrollViewFrameIphone4;
+            self.scrollView.contentSize = kSettingsScrollViewcontentSizeIphone4;
+        } else if (IS_IPHONE_5) {
+            self.scrollView.frame = kScrollViewFrameIphone5;
+            self.scrollView.contentSize = kSettingsScrollViewcontentSizeIphone5;
+        } else if (IS_IPHONE_6) {
+            self.scrollView.frame = kScrollViewFrameIphone6;
+            self.scrollView.contentSize = kSettingsScrollViewcontentSizeIphone6;
+        } else if (IS_IPHONE_6_PLUS) {
+            self.scrollView.frame = kScrollViewFrameIphone6plus;
+            self.scrollView.contentSize = kSettingsScrollViewcontentSizeIphone6plus;
+        }
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+        if (IS_IPAD_2) {
+            self.scrollView.frame = kScrollViewFrameIpad2;
+            self.scrollView.contentSize = kSettingsScrollViewcontentSizeIpad2;
+        } else if (IS_IPAD_AIR) {
+            self.scrollView.frame = kScrollViewFrameIpadAir;
+            self.scrollView.contentSize = kScrollViewcontentSizeIpadAir;
+        } else if (IS_IPAD_PRO) {
+            self.scrollView.frame = kScrollViewFrameIpadPro;
+            self.scrollView.contentSize = kScrollViewcontentSizeIpadPro;
+        }
     }
 }
 
 
 - (void)configureController
 {
+    
+    self.titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    self.titleImageView.frame = kLogoFrame;
+    self.navigationItem.titleView = self.titleImageView;
     
     for (UITextField *textField in self.textFieldsOutletCollection) {
         textField.layer.borderColor = [BLUE_COLOR CGColor];
@@ -99,7 +123,10 @@
     
     self.launguagePickerView.layer.borderColor = [BLUE_COLOR CGColor];
     
-    [self.navigationItem.backBarButtonItem setTitle:@" "];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:self.navigationItem.backBarButtonItem.style
+                                                                            target:nil
+                                                                            action:nil];
     
     UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Info"]
                                                              style:UIBarButtonItemStylePlain
@@ -116,6 +143,7 @@
     UIButton *smsButton = [self.buttonOutletCollection firstObject];
     [smsButton setBackgroundImage:self.point forState:UIControlStateNormal];
     
+    [self edgesForExtendedLayout];
 }
 
 
@@ -124,10 +152,17 @@
 
 - (IBAction)sharedAction:(UIButton *)sender
 {
-    self.curentTag = sender.tag;
-    [self callContactPickerViewController];
+    NSInteger permission = [[TSPermisionContacts sharedPermission] userPermissionToAccessYourContacts];
+    
+    if (permission == 1)
+    {
+        self.curentTag = sender.tag;
+        [self callContactPickerViewController];
 
+    }
+    
 }
+
 
 
 - (IBAction)smsAction:(UIButton *)sender
@@ -298,7 +333,7 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
 {
-    return 40;
+    return kHeightRowComponent;
 }
 
 

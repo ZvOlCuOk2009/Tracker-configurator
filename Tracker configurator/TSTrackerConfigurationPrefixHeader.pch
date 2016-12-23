@@ -21,6 +21,38 @@
 #define IS_IPAD_AIR (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)2048) < DBL_EPSILON)
 #define IS_IPAD_PRO (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)2732) < DBL_EPSILON)
 
+#define kLogoFrame CGRectMake(0, 0, 190, 33);
+
+#define kScrollViewFrameIphone4 CGRectMake(0, 0, 320, 480);
+#define kScrollViewFrameIphone5 CGRectMake(0, 0, 320, 568);
+#define kScrollViewFrameIphone6 CGRectMake(0, 0, 375, 667);
+#define kScrollViewFrameIphone6plus CGRectMake(0, 0, 414, 736);
+#define kScrollViewFrameIpad2 CGRectMake(0, 0, 768, 1024);
+#define kScrollViewFrameIpadAir CGRectMake(0, 0, 1536, 2048);
+#define kScrollViewFrameIpadPro CGRectMake(0, 0, 2048, 2732);
+
+#define kMainScrollViewcontentSizeIphone4 CGSizeMake(320, 1384);
+#define kMainScrollViewcontentSizeIphone5 CGSizeMake(320, 1384);
+#define kMainScrollViewcontentSizeIphone6 CGSizeMake(375, 1384);
+#define kMainScrollViewcontentSizeIphone6plus CGSizeMake(414, 1384);
+#define kMainScrollViewcontentSizeIpad2 CGSizeMake(768, 1384);
+#define kScrollViewcontentSizeIpadAir CGSizeMake(1536, 2049);
+#define kScrollViewcontentSizeIpadPro CGSizeMake(2048, 2733);
+
+#define kGeoFenceScrollViewcontentSizeIphone4 CGSizeMake(320, 568);
+#define kGeoFenceScrollViewcontentSizeIphone5 CGSizeMake(320, 569);
+#define kGeoFenceScrollViewcontentSizeIphone6 CGSizeMake(375, 668);
+#define kGeoFenceScrollViewcontentSizeIphone6plus CGSizeMake(414, 737);
+#define kGeoFenceScrollViewcontentSizeIpad2 CGSizeMake(768, 1025);
+
+#define kSettingsScrollViewcontentSizeIphone4 CGSizeMake(320, 544);
+#define kSettingsScrollViewcontentSizeIphone5 CGSizeMake(320, 632);
+#define kSettingsScrollViewcontentSizeIphone6 CGSizeMake(375, 731);
+#define kSettingsScrollViewcontentSizeIphone6plus CGSizeMake(414, 800);
+#define kSettingsScrollViewcontentSizeIpad2 CGSizeMake(768, 1025);
+
+#define kHeightRowComponent 40.0;
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 

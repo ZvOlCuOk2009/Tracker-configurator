@@ -18,6 +18,7 @@
 		FD4418621E092A9100FDDFB1 /* Tracker_configuratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4418611E092A9100FDDFB1 /* Tracker_configuratorTests.m */; };
 		FD44186D1E092A9100FDDFB1 /* Tracker_configuratorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD44186C1E092A9100FDDFB1 /* Tracker_configuratorUITests.m */; };
 		FD44187C1E093DAB00FDDFB1 /* TSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD44187B1E093DAB00FDDFB1 /* TSMainViewController.m */; };
+		FD4E5F3A1E0D65C800E5774C /* TSPermisionContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4E5F391E0D65C800E5774C /* TSPermisionContacts.m */; };
 		FDA7846B1E09A5F6007D623A /* TSGeoFenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA7846A1E09A5F6007D623A /* TSGeoFenceViewController.m */; };
 		FDA7846E1E09A65E007D623A /* TSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA7846D1E09A65E007D623A /* TSSettingsViewController.m */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,8 @@
 		FD44186E1E092A9100FDDFB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD44187A1E093DAB00FDDFB1 /* TSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMainViewController.h; sourceTree = "<group>"; };
 		FD44187B1E093DAB00FDDFB1 /* TSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMainViewController.m; sourceTree = "<group>"; };
+		FD4E5F381E0D65C800E5774C /* TSPermisionContacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPermisionContacts.h; sourceTree = "<group>"; };
+		FD4E5F391E0D65C800E5774C /* TSPermisionContacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPermisionContacts.m; sourceTree = "<group>"; };
 		FDA784681E09615F007D623A /* TSTrackerConfigurationPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSTrackerConfigurationPrefixHeader.pch; sourceTree = "<group>"; };
 		FDA784691E09A5F6007D623A /* TSGeoFenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSGeoFenceViewController.h; sourceTree = "<group>"; };
 		FDA7846A1E09A5F6007D623A /* TSGeoFenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSGeoFenceViewController.m; sourceTree = "<group>"; };
@@ -168,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				FD1748071E0AD81100515445 /* App */,
+				FD4E5F371E0D657000E5774C /* Permission */,
 				FD17480A1E0ADFA000515445 /* Сategory */,
 				FD1748031E0AD78800515445 /* Manager */,
 				FD1748081E0AD83200515445 /* Controllers */,
@@ -205,6 +209,15 @@
 				FD44186E1E092A9100FDDFB1 /* Info.plist */,
 			);
 			path = "Tracker configuratorUITests";
+			sourceTree = "<group>";
+		};
+		FD4E5F371E0D657000E5774C /* Permission */ = {
+			isa = PBXGroup;
+			children = (
+				FD4E5F381E0D65C800E5774C /* TSPermisionContacts.h */,
+				FD4E5F391E0D65C800E5774C /* TSPermisionContacts.m */,
+			);
+			name = Permission;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +362,7 @@
 				FD44187C1E093DAB00FDDFB1 /* TSMainViewController.m in Sources */,
 				FD4418491E092A9000FDDFB1 /* main.m in Sources */,
 				FD17480D1E0AE01A00515445 /* NSString+TSString.m in Sources */,
+				FD4E5F3A1E0D65C800E5774C /* TSPermisionContacts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,10 @@
 @property (strong, nonatomic) UIImage *point;
 @property (strong, nonatomic) UIImage *background;
 
+@property (strong, nonatomic) UIImageView *titleImageView;
+
 @property (assign, nonatomic) NSInteger curentTag;
+
+- (void)edgesForExtendedLayout;
 
 @end
